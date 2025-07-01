@@ -5,7 +5,6 @@
 Config::Config (const std::string& path) {
     std::ifstream conf_file(path);
 
-    std::cout << std::getenv("PWD") << std::endl;
     if (!conf_file.is_open())
         throw std::invalid_argument(strerror(errno));
 

@@ -8,7 +8,6 @@ using json = nlohmann::json;
 
 class Config {
 private:
-    std::string conf_path;
     json conf;
 public:
     Config (const std::string& path = "config/config.json");
