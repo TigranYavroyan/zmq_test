@@ -1,9 +1,9 @@
 #include <iostream>
 #include <zmq.hpp>
-#include <config.h>
+#include <config.hpp>
 
 int main () {
-    const std::size_t iothread_count = std::stoi(config["iothread_count"]);
+    const int iothread_count = config.get<int>("iothread_count");
     zmq::context_t context(iothread_count);
 
     zmq::socket_t socket (context, zmq::socket_type::req);

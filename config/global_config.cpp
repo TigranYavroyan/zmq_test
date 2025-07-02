@@ -1,3 +1,3 @@
-#include <config.h>
+#include <config.hpp>
 
 Config config;

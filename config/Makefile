@@ -15,8 +15,8 @@ INCLUDES   = $(addprefix -I, $(SRC_DIRS) .)
 
 BUILD_DIR  = build
 
-SRCS       = $(wildcard $(addsuffix /*.cpp,$(SRC_DIRS)))
-OBJS       = $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+SRCS       = $(wildcard $(addsuffix *.cpp,$(SRC_DIRS)))
+OBJS       = $(patsubst %.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
 CXXERRFLAGS = -Wall -Wextra -Werror
 CXXFLAGS    = $(CXXERRFLAGS) -std=c++17 $(INCLUDES)

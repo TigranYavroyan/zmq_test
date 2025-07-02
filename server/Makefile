@@ -4,7 +4,6 @@ RM = rm -f
 
 CXXERRFLAGS = -Wall -Wextra -Werror
 CXXSTD = -std=c++17
-CXXFLAGS = $(CXXERRFLAGS) $(CXXSTD) $(INCLUDES)
 
 SRC_DIR = ./
 BUILD_DIR = build
@@ -12,11 +11,12 @@ LIB_DIR = ../config
 INCLUDE_DIRS = $(LIB_DIR)
 
 INCLUDES = $(addprefix -I,$(INCLUDE_DIRS))
+CXXFLAGS = $(CXXERRFLAGS) $(CXXSTD) $(INCLUDES)
 
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
-LIBS = $(LIB_DIR)/libconfig.a -lzmq
+LIBS = -L$(LIB_DIR) -lconfig -lzmq
 
 RED    = \033[1;31m
 GREEN  = \033[1;32m
@@ -35,7 +35,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo "$(YELLOW)[server] - Compiled $< → $@$(RESET)"
 
 $(LIBS):
-	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) --no-print-directory -C $(LIB_DIR)
 
 clean:
 	@$(RM) $(OBJS)
